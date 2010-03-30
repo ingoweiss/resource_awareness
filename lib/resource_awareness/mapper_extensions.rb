@@ -1,6 +1,6 @@
 require 'action_dispatch/routing/mapper'
-require 'resource_awareness/resource'
-require 'resource_awareness/singleton_resource'
+require 'rails/resource'
+require 'rails/singleton_resource'
 
 module ResourceAwareness
   module MapperExtensions

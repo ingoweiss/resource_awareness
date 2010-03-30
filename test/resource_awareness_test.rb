@@ -12,15 +12,15 @@ class ResourceAwarenessTest < Test::Unit::TestCase
   end
   
   def test_post_resource_should_be_known
-    assert_resource_known :posts
+    assert_resource_known 'posts'
   end
   
   def test_post_comments_resource_should_be_known
-    assert_resource_known :post_comments
+    assert_resource_known 'post_comments'
   end
   
   def test_post_approval_resource_should_be_known
-    assert_resource_known :post_approval
+    assert_resource_known 'post_approval'
   end
   
   private
