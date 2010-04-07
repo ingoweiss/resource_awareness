@@ -3,7 +3,6 @@ require 'rails'
 
 module ResourceAwareness
   class Railtie < Rails::Railtie
-    railtie_name :resource_awareness
     
     initializer 'resource_awareness.extend_application' do
       require 'resource_awareness/application_extensions'

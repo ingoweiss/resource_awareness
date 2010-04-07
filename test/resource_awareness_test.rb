@@ -1,14 +1,8 @@
 require File.join(File.dirname(__FILE__), 'test_helper')
-require File.join(File.dirname(__FILE__), 'host_app_helper')
-
  
 class ResourceAwarenessTest < Test::Unit::TestCase
   
-  include HostAppHelper
-  
   def setup
-    recreate_host_app
-    load_host_app
   end
   
   def test_post_resource_should_be_known
@@ -21,6 +15,10 @@ class ResourceAwarenessTest < Test::Unit::TestCase
   
   def test_post_approval_resource_should_be_known
     assert_resource_known 'post_approval'
+  end
+  
+  def test_resources_should_know_their_controller
+    
   end
   
   private
