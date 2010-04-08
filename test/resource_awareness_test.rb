@@ -12,14 +12,24 @@ class ResourceAwarenessTest < Test::Unit::TestCase
     assert_resource_known 'post_approval'
   end
   
+  def test_resources_should_know_their_controller
+    assert PostsController, find_resource_by_name('posts').controller
+    assert PostCommentsController, find_resource_by_name('post_comments').controller
+    assert PostApprovalController, find_resource_by_name('post_approval').controller
+  end
+  
   private
   
   def assert_resource_known(resource_name, resource_class=Rails::Resource)
-    assert_not_nil Rails.application.resources.find { |r| r.is_a?(resource_class) && r.name == resource_name }, "No resource with name #{resource_name} known"
+    assert_not_nil find_resource_by_name(resource_name, resource_class), "No resource with name #{resource_name} known"
   end
   
   def assert_singleton_resource_known(resource_name)
     assert_resource_known(resource_name, Rails::SingletonResource)
+  end
+  
+  def find_resource_by_name(resource_name, resource_class=Rails::Resource)
+    Rails.application.resources.find { |r| r.is_a?(resource_class) && r.name == resource_name }
   end
   
 end
