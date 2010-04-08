@@ -18,4 +18,8 @@ class ResourceAwarenessTest < Test::Unit::TestCase
     assert_not_nil Rails.application.resources.find { |r| r.is_a?(resource_class) && r.name == resource_name }, "No resource with name #{resource_name} known"
   end
   
+  def assert_singleton_resource_known(resource_name)
+    assert_resource_known(resource_name, Rails::SingletonResource)
+  end
+  
 end
