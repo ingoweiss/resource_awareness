@@ -1,9 +1,14 @@
-append_file 'Gemfile', "gem 'ruby-debug'\n"
-append_file 'Gemfile', "gem 'resource_awareness', :path => '#{ENV['RESOURCE_AWARENESS_ROOT']}'\n"
+gem 'ruby-debug'
+gem 'resource_awareness', :path => ENV['RESOURCE_AWARENESS_ROOT']
+gem 'relay'
+gem 'ingoweiss_generators'
 
-route <<-ROUTES
-  resources :posts do
-    resources :comments
-    resource :approval
+add_file 'config/resource_layout.rb', <<RESOURCE_LAYOUT
+ResourceLayout.define do
+  many :posts do
+    many :comments
+    one :approval
   end
-ROUTES
+end
+RESOURCE_LAYOUT
+generate :resource_layout, '--generator=ingoweiss:scaffold'
