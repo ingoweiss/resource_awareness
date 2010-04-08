@@ -5,7 +5,6 @@ module Rails
     
     def initialize(entity, scope, options)
       self.name = [scope[:name_prefix], entity].compact.join('_')
-      true
     end
     
     def controller

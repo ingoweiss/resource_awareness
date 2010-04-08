@@ -13,9 +13,15 @@ class ResourceAwarenessTest < Test::Unit::TestCase
   end
   
   def test_resources_should_know_their_controller
-    assert PostsController, find_resource_by_name('posts').controller
-    assert PostCommentsController, find_resource_by_name('post_comments').controller
-    assert PostApprovalController, find_resource_by_name('post_approval').controller
+    assert_equal PostsController,         find_resource_by_name('posts').controller
+    assert_equal PostCommentsController,  find_resource_by_name('post_comments').controller
+    assert_equal PostApprovalController,  find_resource_by_name('post_approval').controller
+  end
+  
+  def test_controllers_should_know_their_resource
+    assert_equal find_resource_by_name('posts'),          PostsController.resource
+    assert_equal find_resource_by_name('post_comments'),  PostCommentsController.resource
+    assert_equal find_resource_by_name('post_approval'),  PostApprovalController.resource
   end
   
   private
