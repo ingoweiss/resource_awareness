@@ -16,5 +16,9 @@ module ResourceAwareness
       require 'resource_awareness/action_controller_extensions'
     end
     
+    rake_tasks do
+      load 'tasks/resource_awareness.rake'
+    end
+    
   end
 end
