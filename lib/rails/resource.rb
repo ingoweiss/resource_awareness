@@ -1,3 +1,5 @@
+require 'builder'
+
 module Rails
   class Resource
     attr_accessor :id, :name, :singular_name, :controller_name, :name_prefix, :path_prefix, :home_route
@@ -17,19 +19,19 @@ module Rails
       path_prefix ? "#{path_prefix}/#{name}" : "/#{name}"
     end
     
-    def attributes
-      {
-        :id => id,
-        :name => name,
-        :singular_name => singular_name,
-        :path_prefix => path_prefix,
-        :path => path,
-        :controller_name => controller_name
-      }
-    end
-    
-    def to_xml
-      attributes.to_xml
+    def to_xml(options = {})
+      options[:indent] ||= 2
+      xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => options[:indent])
+      xml.instruct! unless options[:skip_instruct]
+      xml.resource do
+        xml.id id
+        xml.type self.class
+        xml.name name
+        xml.singular_name singular_name
+        xml.path_prefix path_prefix
+        xml.path path
+        xml.controller_name controller_name
+      end
     end
   end
 end

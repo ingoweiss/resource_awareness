@@ -10,4 +10,5 @@ DESCRIPTION
   gem.homepage = 'http://github.com/ingoweiss/resource_awareness'
   gem.files = Dir['{lib}/**/*']
   gem.add_dependency 'rails', '~> 3.0'
+  gem.add_dependency 'builder', '~> 2.1'
 end
