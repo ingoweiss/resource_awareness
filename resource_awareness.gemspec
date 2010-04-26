@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name    = 'resource_awareness'
-  gem.version = '0.0.5'
+  gem.version = '0.0.6'
   gem.summary = "Makes Rails applications aware of their resources"
   gem.description = <<-DESCRIPTION
 Makes information about a Rails application's resources (as defined via the 'resource(s)' routing DSL methods) available via Rails.application.resources

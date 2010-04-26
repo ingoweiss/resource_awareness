@@ -2,6 +2,6 @@ require 'action_controller/base'
 
 class ActionController::Base
   def resource
-    @resource ||= Rails.application.resources.find { |r| r.controller_name == self.controller_name }
+    @resource ||= Rails.application.resources.find { |r| r.controller_path == self.controller_path }
   end
 end

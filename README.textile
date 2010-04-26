@@ -1,6 +1,6 @@
-h1. resource_awareness 0.0.5
+h1. resource_awareness
 
-resource_awareness makes Rails applications aware of the Rails 'resources' that have been defined in config/routes.rb using the 'resource(s)' routing DSL methods.
+resource_awareness makes Rails applications aware of the Rails 'resources' as defined in config/routes.rb using the 'resource(s)' routing DSL methods.
 
 An application's resources can be accessed via 'Rails.application.resources'. Each resource object encapsulates information such as the resource's name, home route, path and the controller that is handling it:
 
@@ -11,7 +11,7 @@ An application's resources can be accessed via 'Rails.application.resources'. Ea
 | home_route       | [the 'post_comments' named route] |
 | path_prefix      | /posts/:post_id                   |
 | path             | /posts/:post_id/comments          |
-| controller_name  | comments                          |
+| controller_path  | comments                          |
 
 resource_awareness also adds a 'resource' instance method to controllers returning the resource they are handling, if any.
 

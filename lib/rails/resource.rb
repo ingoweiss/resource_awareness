@@ -2,7 +2,7 @@ require 'builder'
 
 module Rails
   class Resource
-    attr_accessor :id, :name, :singular_name, :controller_name, :name_prefix, :path_prefix, :home_route
+    attr_accessor :id, :name, :singular_name, :controller_path, :name_prefix, :path_prefix, :home_route
 
     def initialize(entity, scope, options)
       self.name_prefix = scope[:name_prefix]
@@ -12,7 +12,7 @@ module Rails
       self.home_route = Rails.application.routes.named_routes[id]
       self.path_prefix = home_route.path.sub("/#{name}(.:format)", '')
       self.path_prefix = nil if path_prefix.blank?
-      self.controller_name = home_route.requirements[:controller]
+      self.controller_path = home_route.requirements[:controller]
     end
     
     def path
