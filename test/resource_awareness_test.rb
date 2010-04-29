@@ -55,6 +55,13 @@ class ResourceAwarenessTest < Test::Unit::TestCase
     assert_equal Set[],                    find_resource('admin_comments').prefix_parameters
   end
 
+  def test_resources_should_know_whether_they_are_a_singleton
+    assert_equal false, find_resource('posts').singleton?
+    assert_equal false, find_resource('post_comments').singleton?
+    assert_equal true,  find_singleton_resource('post_approval').singleton?
+    assert_equal false, find_resource('admin_comments').singleton?
+  end
+
   private
 
   def assert_resource_known(resource_id, resource_class=Rails::Resource)

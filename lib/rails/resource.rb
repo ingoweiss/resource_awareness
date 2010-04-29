@@ -20,6 +20,10 @@ module Rails
       path_prefix ? "#{path_prefix}/#{name}" : "/#{name}"
     end
     
+    def singleton?
+      false
+    end
+    
     def to_xml(options = {})
       options[:indent] ||= 2
       xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => options[:indent])
