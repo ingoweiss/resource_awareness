@@ -4,14 +4,15 @@ resource_awareness makes Rails applications aware of the Rails 'resources' as de
 
 An application's resources can be accessed via 'Rails.application.resources'. Each resource object encapsulates information such as the resource's name, home route, path and the controller that is handling it:
 
-|_. attribute      |_. example                         |
-| id               | post_comments                     |
-| name             | comments                          |
-| singular_name    | comment                           |
-| home_route       | [the 'post_comments' named route] |
-| path_prefix      | /posts/:post_id                   |
-| path             | /posts/:post_id/comments          |
-| controller_path  | comments                          |
+|_. attribute       |_. example                         |
+| id                | post_comments                     |
+| name              | comments                          |
+| singular_name     | comment                           |
+| home_route        | [the 'post_comments' named route] |
+| path_prefix       | /posts/:post_id                   |
+| path              | /posts/:post_id/comments          |
+| prefix_parameters | [:post_id]                        |
+| controller_path   | comments                          |
 
 resource_awareness also adds a 'resource' instance method to controllers returning the resource they are handling, if any.
 

@@ -48,6 +48,13 @@ class ResourceAwarenessTest < Test::Unit::TestCase
     assert_equal '/admin/comments',           find_resource('admin_comments').path
   end
 
+  def test_resources_should_know_their_prefix_parameters
+    assert_equal Set[],                    find_resource('posts').prefix_parameters
+    assert_equal Set[:post_id],            find_resource('post_comments').prefix_parameters
+    assert_equal Set[:post_id],            find_singleton_resource('post_approval').prefix_parameters
+    assert_equal Set[],                    find_resource('admin_comments').prefix_parameters
+  end
+
   private
 
   def assert_resource_known(resource_id, resource_class=Rails::Resource)
