@@ -35,7 +35,7 @@ module Rails
         xml.singular_name singular_name
         xml.path_prefix path_prefix
         xml.path path
-        xml.controller_name controller_name
+        xml.controller_path controller_path
       end
     end
   end
