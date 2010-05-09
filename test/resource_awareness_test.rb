@@ -61,6 +61,13 @@ class ResourceAwarenessTest < Test::Unit::TestCase
     assert_equal true,  find_singleton_resource('post_approval').singleton?
     assert_equal false, find_resource('admin_comments').singleton?
   end
+  
+  def test_resource_should_have_an_xml_representation
+    assert_equal 'posts',           Nokogiri::XML(find_resource('posts').to_xml).xpath('/resource/id').text
+    assert_equal 'post_comments',   Nokogiri::XML(find_resource('post_comments').to_xml).xpath('/resource/id').text
+    assert_equal 'post_approval',   Nokogiri::XML(find_resource('post_approval').to_xml).xpath('/resource/id').text
+    assert_equal 'admin_comments',  Nokogiri::XML(find_resource('admin_comments').to_xml).xpath('/resource/id').text
+  end
 
   private
 

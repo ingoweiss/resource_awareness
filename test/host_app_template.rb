@@ -1,5 +1,6 @@
 gem 'ruby-debug'
 gem 'resource_awareness', :path => ENV['RESOURCE_AWARENESS_ROOT']
+gem 'nokogiri'
 
 route <<ROUTES
 resources :posts do
