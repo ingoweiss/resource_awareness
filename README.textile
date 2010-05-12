@@ -12,11 +12,25 @@ resource_awareness makes information about a Rails application's resources (as d
 | prefix_parameters | [:post_id]                        |
 | controller_path   | comments                          |
 
-resource_awareness also adds a @resource@ instance method to controllers returning the resource they are handling, if any.
+p. Controller get a @resource@ instance method to controllers returning the resource they are handling, if any.
 
-Lastly, resource_awareness adds a @rake resources@ tasks that lists an application's resources, just like @rake routes@ does for routes
+p. Resources have a to_xml method that makes it trivial to expose an application's resource as a resource in turn:
 
-Please note that resource_awareness is experimental and the API is likely to change. Please let me know if you have suggestions or comments!
+bc(ruby).. # config/routes.rb
+resources :resources
+
+# app/controllers/resources_controller.rb
+respond_to :xml
+
+def index
+  respond_with Rails.application.resources
+end
+
+# At this point, resource information is available at /resources.xml
+
+p. Lastly, resource_awareness adds a @rake resources@ tasks that lists an application's resources, just like @rake routes@ does for routes
+
+p. Please note that resource_awareness is experimental and interfaces are likely to change. I very much welcome suggestions or comments!
 
 h3. Installation
 
