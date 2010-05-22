@@ -68,6 +68,13 @@ class ResourceAwarenessTest < Test::Unit::TestCase
     assert_equal 'post_approval',   Nokogiri::XML(find_resource('post_approval').to_xml).xpath('/resource/id').text
     assert_equal 'admin_comments',  Nokogiri::XML(find_resource('admin_comments').to_xml).xpath('/resource/id').text
   end
+  
+  def test_resources_should_be_findable_by_id_using_bracket_syntax
+    assert_equal find_resource('posts'), Rails.application.resources['posts']
+    assert_equal find_resource('post_comments'), Rails.application.resources['post_comments']
+    assert_equal find_resource('post_approval'), Rails.application.resources['post_approval']
+    assert_equal find_resource('admin_comments'), Rails.application.resources['admin_comments']
+  end
 
   private
 

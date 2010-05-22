@@ -12,7 +12,11 @@ resource_awareness makes information about a Rails application's resources (as d
 | prefix_parameters | [:post_id]                        |
 | controller_path   | comments                          |
 
-p. Controller get a @resource@ instance method to controllers returning the resource they are handling, if any.
+p. Resources can be retrieved by id using bracket syntax:
+
+bc(ruby). Rails.application.resources['post_comments']
+
+p. Controllers get a @resource@ instance method to controllers returning the resource they are handling, if any.
 
 p. Resources have a to_xml method that makes it trivial to expose an application's resource as a resource in turn:
 
