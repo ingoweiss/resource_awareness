@@ -20,6 +20,13 @@ class ResourceAwarenessTest < Test::Unit::TestCase
     assert_equal 'admin/comments', find_resource('admin_comments').controller_path
   end
 
+  def test_resources_should_know_their_controller
+    assert_equal PostsController,           find_resource('posts').controller
+    assert_equal PostCommentsController,    find_resource('post_comments').controller
+    assert_equal PostApprovalController,    find_singleton_resource('post_approval').controller
+    assert_equal Admin::CommentsController, find_resource('admin_comments').controller
+  end
+
   def test_controllers_should_know_their_resource
     assert_equal find_resource('posts'),                    PostsController.new.resource
     assert_equal find_resource('post_comments'),            PostCommentsController.new.resource

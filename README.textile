@@ -11,6 +11,7 @@ resource_awareness makes information about a Rails application's resources (as d
 | path              | /posts/:post_id/comments          |
 | prefix_parameters | [:post_id]                        |
 | controller_path   | comments                          |
+| controller        | CommentsController                |
 
 p. Resources can be retrieved by id using bracket syntax:
 

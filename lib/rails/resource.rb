@@ -20,6 +20,10 @@ module Rails
       path_prefix ? "#{path_prefix}/#{name}" : "/#{name}"
     end
     
+    def controller
+      @controller ||= (controller_path + '_controller').classify.constantize
+    end
+    
     def singleton?
       false
     end
