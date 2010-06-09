@@ -7,7 +7,7 @@ module HostAppHelper
 
   def recreate_host_app
     FileUtils.rm_rf(HOST_APP_ROOT) if File.exist?(HOST_APP_ROOT)
-    %x[RESOURCE_AWARENESS_ROOT='#{RESOURCE_AWARENESS_ROOT}' rails #{HOST_APP_ROOT} -m #{RESOURCE_AWARENESS_ROOT}/test/host_app_template.rb --quiet]
+    %x[RESOURCE_AWARENESS_ROOT='#{RESOURCE_AWARENESS_ROOT}' rails new #{HOST_APP_ROOT} --template=#{RESOURCE_AWARENESS_ROOT}/test/host_app_template.rb --quiet]
   end
 
   def load_host_app
