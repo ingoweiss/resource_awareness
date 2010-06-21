@@ -3,8 +3,8 @@ require 'resource_awareness/resource_collection'
 
 module ResourceAwareness
   module ApplicationExtensions
-    def resources
-      @resources ||= ResourceCollection.new
+    def resource_definitions
+      @resource_definitions ||= ResourceCollection.new
     end
   end
 end

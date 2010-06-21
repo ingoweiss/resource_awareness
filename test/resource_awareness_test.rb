@@ -6,7 +6,7 @@ class ResourceAwarenessTest < Test::Unit::TestCase
   end
 
   def test_resources_should_be_known
-    assert_equal 4, Rails.application.resources.length
+    assert_equal 4, Rails.application.resource_definitions.length
     assert_resource_known 'posts'
     assert_resource_known 'post_comments'
     assert_singleton_resource_known 'post_approval'
@@ -28,10 +28,10 @@ class ResourceAwarenessTest < Test::Unit::TestCase
   end
 
   def test_controllers_should_know_their_resource
-    assert_equal find_resource('posts'),                    PostsController.new.resource
-    assert_equal find_resource('post_comments'),            PostCommentsController.new.resource
-    assert_equal find_singleton_resource('post_approval'),  PostApprovalController.new.resource
-    assert_equal find_resource('admin_comments'),           Admin::CommentsController.new.resource
+    assert_equal find_resource('posts'),                    PostsController.new.resource_definition
+    assert_equal find_resource('post_comments'),            PostCommentsController.new.resource_definition
+    assert_equal find_singleton_resource('post_approval'),  PostApprovalController.new.resource_definition
+    assert_equal find_resource('admin_comments'),           Admin::CommentsController.new.resource_definition
   end
 
   def test_resources_should_know_their_name_prefix
@@ -77,10 +77,10 @@ class ResourceAwarenessTest < Test::Unit::TestCase
   end
   
   def test_resources_should_be_findable_by_id_using_bracket_syntax
-    assert_equal find_resource('posts'), Rails.application.resources['posts']
-    assert_equal find_resource('post_comments'), Rails.application.resources['post_comments']
-    assert_equal find_resource('post_approval'), Rails.application.resources['post_approval']
-    assert_equal find_resource('admin_comments'), Rails.application.resources['admin_comments']
+    assert_equal find_resource('posts'), Rails.application.resource_definitions['posts']
+    assert_equal find_resource('post_comments'), Rails.application.resource_definitions['post_comments']
+    assert_equal find_resource('post_approval'), Rails.application.resource_definitions['post_approval']
+    assert_equal find_resource('admin_comments'), Rails.application.resource_definitions['admin_comments']
   end
 
   private
@@ -94,7 +94,7 @@ class ResourceAwarenessTest < Test::Unit::TestCase
   end
 
   def find_resource(resource_id, resource_class=Rails::Resource)
-    Rails.application.resources.find { |r| r.is_a?(resource_class) && r.id == resource_id }
+    Rails.application.resource_definitions.find { |r| r.is_a?(resource_class) && r.id == resource_id }
   end
 
   def find_singleton_resource(resource_id)

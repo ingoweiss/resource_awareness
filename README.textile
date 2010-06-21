@@ -1,6 +1,6 @@
 h1. resource_awareness
 
-resource_awareness makes information about a Rails application's resources (as defined via the 'resource/s' routing DSL methods) available via @Rails.application.resources@. Each resource object encapsulates information such as the resource's name, home route, path and the controller that is handling it:
+resource_awareness makes information about a Rails application's resources (as defined via the 'resource/s' routing DSL methods) available via @Rails.application.resource_definitions@. Each resource object encapsulates information such as the resource's name, home route, path and the controller that is handling it:
 
 |_. attribute       |_. example                         |
 | id                | post_comments                     |
@@ -15,9 +15,9 @@ resource_awareness makes information about a Rails application's resources (as d
 
 p. Resources can be retrieved by id using bracket syntax:
 
-bc(ruby). Rails.application.resources['post_comments']
+bc(ruby). Rails.application.resource_definitions['post_comments']
 
-p. Controllers get a @resource@ instance method to controllers returning the resource they are handling, if any.
+p. Controllers get a @resource_definition@ instance method to controllers returning the resource they are handling, if any.
 
 p. Resources have a to_xml method that makes it trivial to expose an application's resource as a resource in turn:
 
@@ -28,7 +28,7 @@ resources :resources
 respond_to :xml
 
 def index
-  respond_with Rails.application.resources
+  respond_with Rails.application.resource_definitions
 end
 
 # At this point, resource information is available at /resources.xml

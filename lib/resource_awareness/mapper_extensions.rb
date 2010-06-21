@@ -7,13 +7,13 @@ module ResourceAwareness
     def resources(*entities, &block)
       super
       options = entities.extract_options!
-      Rails.application.resources << Rails::Resource.new(entities.first, @scope, options) if leaf_call?(entities, options)
+      Rails.application.resource_definitions << Rails::Resource.new(entities.first, @scope, options) if leaf_call?(entities, options)
     end
 
     def resource(*entities, &block)
       super
       options = entities.extract_options!
-      Rails.application.resources << Rails::SingletonResource.new(entities.first, @scope, options) if leaf_call?(entities, options)
+      Rails.application.resource_definitions << Rails::SingletonResource.new(entities.first, @scope, options) if leaf_call?(entities, options)
     end
 
     private
