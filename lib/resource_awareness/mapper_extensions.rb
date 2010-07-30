@@ -23,7 +23,11 @@ module ResourceAwareness
     # this method returns true only if this is a 'leaf call' (a call that doesn't call itself again)
     # TODO: there should be a better way to determine this
     def leaf_call?(entities, options)
-      !(@scope[:scope_level] == :resources || entities.length > 1 || options[:path_names])
+      return false if entities.many?
+      return false unless options.slice!(*ActionDispatch::Routing::Mapper::RESOURCE_OPTIONS).empty?
+      return false if options[:path_names]
+      return false if [:resource, :resources].include?(@scope[:scope_level])
+      true
     end
   end
 end

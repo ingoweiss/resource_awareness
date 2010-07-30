@@ -5,7 +5,7 @@ module Rails
     attr_accessor :id, :name, :singular_name, :controller_path, :name_prefix, :path_prefix, :prefix_parameters, :home_route
 
     def initialize(entity, scope, options)
-      self.name_prefix = scope[:name_prefix]
+      self.name_prefix = scope[:as]
       self.name = entity.to_s
       self.singular_name = name.singularize
       self.id = [name_prefix, name].compact.join('_')
